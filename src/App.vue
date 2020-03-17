@@ -13,7 +13,7 @@ export default {
   },
   data(){
     return {
-
+       res:{}
     }
   },
   mounted(){
@@ -22,6 +22,25 @@ export default {
     // storage.setItem('abc',{a:1},'user')
     // storage.clear('b');
     // storage.clear('b','user');
+
+     //本地加载请求静态json文件的形式
+    // this.axios.get('/mock/user/login.json').then((res)=>{
+    //   this.res=res;
+    // })
+
+   //通过easy-mock平台实现数据mock 弊端：easy-mock平台容易崩
+  //  this.axios.get('/user/login').then((res)=>{
+  //     this.res=res;
+  //   })
+  
+  //本地集成mockjs实现数据mock
+  //1.cnpm i mockjs --save-dev
+  //2.src下新建mock文件夹，文件夹下新建api.js
+  //3.mian.js中 require('./mock/api')
+   this.axios.get('/user/login').then((res)=>{
+      this.res=res;
+    })
+
   },
   methods:{
 
