@@ -1,6 +1,6 @@
 <template>
     <div>
-        product
+        orderlist
     </div>
 </template>
 <style lang="stylus">
@@ -8,6 +8,6 @@
 </style>
 <script>
 export default {
-    name:"product"
+    name:"order-list"
 }
 </script>>
