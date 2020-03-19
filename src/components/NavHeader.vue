@@ -9,7 +9,7 @@
                       <a href="javascript:;">协议规则</a>
                   </div>
                   <div class="topbar-user">
-                      <a href="javascript:;" v-if="username">{{username}}}</a>
+                      <a href="javascript:;" v-if="username">{{username}}</a>
                       <a href="javascript:;" v-if="!username" @click="login">登录</a>
                       <a href="javascript:;" v-if="username">我的订单</a>
                       <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
@@ -137,6 +137,7 @@
                     background-color: #FF6600;
                     text-align: center;
                     color: #ffffff;
+                    margin-right: 0;
                     .icon-cart{
                         @include bgImg(16px,12px,'/imgs/icon-cart-checked.png');
                         margin-right: 4px;
@@ -199,7 +200,7 @@
                             position:absolute;
                             top:112px;
                             left:0;
-                            width:1000px;
+                            width:1224px;
                             height:0;
                             opacity:0;
                             overflow:hidden;
@@ -282,7 +283,7 @@ export default {
     name:"nav-header",
     data(){
         return {
-            username:'jack',
+            username:'',
             phoneList:[]
         }
     },
