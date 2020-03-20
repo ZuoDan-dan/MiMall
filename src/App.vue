@@ -23,6 +23,8 @@ export default {
     }
   },
   mounted(){
+    this.getUser();
+    this.getCartCount();
     //  storage.setItem('a',1)
     //  storage.setItem('user',{b:1})
     // storage.setItem('abc',{a:1},'user')
@@ -30,7 +32,18 @@ export default {
     // storage.clear('b','user');
   },
   methods:{
-
+      getUser(){
+        this.axios.get('/user').then(
+          (res)=>{
+            this.$store.dispatch('saveUserName',res.username);
+          }
+        )
+      },
+      getCartCount(){
+        this.axios.get('/carts/products/sum').then((res)=>{
+            this.$store.dispatch('saveCartCount',res);
+        })
+      }
   }
 }
 </script>
