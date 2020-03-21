@@ -5,6 +5,8 @@ import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
 import store from './store'
+import { Message } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 // import env from './env'
 //根据前端的跨域方式做调整
@@ -20,17 +22,23 @@ axios.interceptors.response.use(function(response){
     return res.data;
   }else if(res.status==10){
     if(path!='#/index'){
-      window.loacaltion.href='/#/login';
+      window.location.href='/#/login';
+      return Promise.reject(res);
     }
     
   }else{
-    alert(res.msg);
+    Message.warning(res.msg);
     return Promise.reject(res);
   }
-})
+},(error)=>{
+  let res = error.response;
+  Message.error(res.data.message);
+  return Promise.reject(error);
+});
 
 Vue.use(VueAxios,axios);
 Vue.use(VueCookie);
+Vue.prototype.$message = Message;
 Vue.config.productionTip = false
 Vue.use(VueLazyLoad,{
   loading:'/imgs/loading-svg/loading-bars.svg'

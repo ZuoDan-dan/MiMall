@@ -23,8 +23,10 @@ export default {
     }
   },
   mounted(){
-    this.getUser();
-    this.getCartCount();
+    if(this.$cookie.get('userId')){
+      this.getUser();
+      this.getCartCount();
+    }
     //  storage.setItem('a',1)
     //  storage.setItem('user',{b:1})
     // storage.setItem('abc',{a:1},'user')
@@ -34,13 +36,13 @@ export default {
   methods:{
       getUser(){
         this.axios.get('/user').then(
-          (res)=>{
+          (res={})=>{
             this.$store.dispatch('saveUserName',res.username);
           }
         )
       },
       getCartCount(){
-        this.axios.get('/carts/products/sum').then((res)=>{
+        this.axios.get('/carts/products/sum').then((res=0)=>{
             this.$store.dispatch('saveCartCount',res);
         })
       }
